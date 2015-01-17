@@ -24,9 +24,12 @@
     <script>
       var socket = io();
       $('form').submit(function(){
-        socket.emit('chat message', { msg: $('#m').val(), user:asd, fecha:'dasd'});
-        $('#m').val('');
-        return false;
+
+          $('#messages').append($('<li>').html('<b>'+ asd + ': </b>'+ $('#m').val() ));
+          socket.emit('chat message', { msg: $('#m').val(), user:asd, fecha:'dasd'});
+          $('#m').val('');
+
+          return false;
       });
       socket.on('chat message', function(msg){
         $('#messages').append($('<li>').html('<b>'+msg.user + ': </b>'+ msg.msg));
